@@ -1,0 +1,9 @@
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Client\bin\Release\URPG_Client.exe.config
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Client\bin\Release\URPG_Client.exe
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Client\bin\Release\URPG_Client.pdb
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Client\obj\Release\URPG_Client.LoginForm.resources
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Client\obj\Release\URPG_Client.MainForm.resources
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Client\obj\Release\URPG_Client.Properties.Resources.resources
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Client\obj\Release\URPG_Client.csproj.GenerateResource.Cache
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Client\obj\Release\URPG_Client.exe
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Client\obj\Release\URPG_Client.pdb

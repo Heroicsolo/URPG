@@ -1,0 +1,5 @@
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Server\bin\Debug\URPG_Server.exe.config
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Server\bin\Debug\URPG_Server.exe
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Server\bin\Debug\URPG_Server.pdb
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Server\obj\Debug\URPG_Server.exe
+c:\users\1\Documents\Visual Studio 2013\Projects\URPG_Client\URPG_Server\obj\Debug\URPG_Server.pdb
