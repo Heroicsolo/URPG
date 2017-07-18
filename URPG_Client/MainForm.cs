@@ -122,5 +122,25 @@ namespace URPG_Client
         {
             Disconnect();
         }
+
+        private void trackBarStrength_Scroll(object sender, EventArgs e)
+        {
+            m_pData.GetStats().m_strength = (uint)trackBarStrength.Value;
+        }
+
+        private void trackBarAgility_Scroll(object sender, EventArgs e)
+        {
+            m_pData.GetStats().m_agility = (uint)trackBarAgility.Value;
+        }
+
+        private void trackBarIntelligence_Scroll(object sender, EventArgs e)
+        {
+            m_pData.GetStats().m_intelligence = (uint)trackBarIntelligence.Value;
+        }
+
+        private void trackBarStamina_Scroll(object sender, EventArgs e)
+        {
+            m_pData.GetStats().m_stamina = (uint)trackBarStamina.Value;
+        }
     }
 }
