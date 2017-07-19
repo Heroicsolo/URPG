@@ -37,4 +37,4 @@ D:\KDV\URPG\URPG_Client\obj\Debug\URPG_Client.exe
 D:\KDV\URPG\URPG_Client\obj\Debug\URPG_Client.pdb
 D:\KDV\URPG\URPG_Client\obj\Debug\URPG_Client.CharacterForm.resources
 D:\Work_2D\URPG\URPG_Client\obj\Debug\URPG_Client.GamesForm.resources
-D:\Work_2D\URPG\URPG_Client\obj\Debug\URPG_Client.CharacterForm.resources
+D:\Work_2D\URPG\URPG_Client\obj\Debug\URPG_Client.ClassicFantasy.CharacterForm.resources

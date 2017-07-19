@@ -16,6 +16,56 @@ namespace URPG_Client
         {
             InitializeComponent();
             NetworkUtils.Init();
+
+            RemoveNextTabs();
+        }
+
+        private void RemoveNextTabs()
+        {
+            int i_currentTab = tabControlMain.SelectedIndex;
+            for (int i = tabControlMain.TabPages.Count - 1; i > i_currentTab; i--)
+                tabControlMain.TabPages.RemoveAt(i);
+        }
+
+        private void gamesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            createButton.Enabled = true;
+            RemoveNextTabs();
+        }
+
+        private void sessionsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //here we will write free player slots availability
+            joinButton.Enabled = true;
+        }
+
+        private void joinButton_Click(object sender, EventArgs e)
+        {
+            tabControlMain.TabPages.Add(tabPageCharacter);
+            tabControlMain.SelectTab(1);
+        }
+
+        private void createButton_Click(object sender, EventArgs e)
+        {
+            tabControlMain.TabPages.Add(tabPageSession);
+            tabControlMain.SelectTab(1);
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            tabControlMain.SelectTab(0);
+            RemoveNextTabs();
+        }
+
+        private void buttonLaunchSession_Click(object sender, EventArgs e)
+        {
+            tabControlMain.TabPages.Add(tabPageCharacter);
+            tabControlMain.SelectTab(2);
+        }
+
+        private void trackBarStrength_Scroll(object sender, EventArgs e)
+        {
+
         }
     }
 }

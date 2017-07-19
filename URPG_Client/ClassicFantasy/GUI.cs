@@ -1,33 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net;
-using System.Net.Sockets;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 
-namespace URPG_Client
+namespace URPG_Client.ClassicFantasy
 {
-    public partial class CharacterForm : Form
+    public partial class GUI : UserControl
     {
         private int m_checkedQualities = 0;
         private ClassicFantasy.Mechanics.PlayerStats p_stats;
 
-        public CharacterForm()
+        public GUI()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
             ClassicFantasy.Mechanics.PlayerData.Init();
             p_stats = ClassicFantasy.Mechanics.PlayerData.GetStats();
         }
@@ -37,13 +27,9 @@ namespace URPG_Client
             return trackBarStrength.Value + trackBarAgility.Value + trackBarIntelligence.Value + trackBarStamina.Value >= SessionData.i_statsPoints;
         }
 
-        private void trackBarStrength_Scroll(object sender, EventArgs e)
+        public void trackBarStrength_Scroll(object sender, EventArgs e)
         {
-            if (IsPrimaryStatsFilled())
-                trackBarStrength.Value = SessionData.i_statsPoints - (trackBarAgility.Value + trackBarIntelligence.Value + trackBarStamina.Value);
-            p_stats.m_strength = (uint)trackBarStrength.Value;
-            labelStr.Text = trackBarStrength.Value.ToString();
-            RefreshCharacterInfo();
+
         }
 
         private void trackBarAgility_Scroll(object sender, EventArgs e)
