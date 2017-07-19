@@ -40,6 +40,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.labelStr = new System.Windows.Forms.Label();
+            this.labelAgi = new System.Windows.Forms.Label();
+            this.labelInt = new System.Windows.Forms.Label();
+            this.labelSta = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarStrength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAgility)).BeginInit();
@@ -80,7 +84,7 @@
             this.trackBarStrength.Name = "trackBarStrength";
             this.trackBarStrength.Size = new System.Drawing.Size(232, 45);
             this.trackBarStrength.TabIndex = 1;
-            this.trackBarStrength.Scroll += new System.EventHandler(this.trackBarStrength_Scroll);
+            this.trackBarStrength.ValueChanged += new System.EventHandler(this.trackBarStrength_Scroll);
             // 
             // trackBarAgility
             // 
@@ -90,7 +94,7 @@
             this.trackBarAgility.Name = "trackBarAgility";
             this.trackBarAgility.Size = new System.Drawing.Size(232, 45);
             this.trackBarAgility.TabIndex = 2;
-            this.trackBarAgility.Scroll += new System.EventHandler(this.trackBarAgility_Scroll);
+            this.trackBarAgility.ValueChanged += new System.EventHandler(this.trackBarAgility_Scroll);
             // 
             // trackBarIntelligence
             // 
@@ -100,7 +104,7 @@
             this.trackBarIntelligence.Name = "trackBarIntelligence";
             this.trackBarIntelligence.Size = new System.Drawing.Size(232, 45);
             this.trackBarIntelligence.TabIndex = 3;
-            this.trackBarIntelligence.Scroll += new System.EventHandler(this.trackBarIntelligence_Scroll);
+            this.trackBarIntelligence.ValueChanged += new System.EventHandler(this.trackBarIntelligence_Scroll);
             // 
             // trackBarStamina
             // 
@@ -110,7 +114,7 @@
             this.trackBarStamina.Name = "trackBarStamina";
             this.trackBarStamina.Size = new System.Drawing.Size(232, 45);
             this.trackBarStamina.TabIndex = 4;
-            this.trackBarStamina.Scroll += new System.EventHandler(this.trackBarStamina_Scroll);
+            this.trackBarStamina.ValueChanged += new System.EventHandler(this.trackBarStamina_Scroll);
             // 
             // label1
             // 
@@ -157,11 +161,51 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Primary stats";
             // 
+            // labelStr
+            // 
+            this.labelStr.AutoSize = true;
+            this.labelStr.Location = new System.Drawing.Point(295, 57);
+            this.labelStr.Name = "labelStr";
+            this.labelStr.Size = new System.Drawing.Size(13, 13);
+            this.labelStr.TabIndex = 10;
+            this.labelStr.Text = "0";
+            // 
+            // labelAgi
+            // 
+            this.labelAgi.AutoSize = true;
+            this.labelAgi.Location = new System.Drawing.Point(295, 108);
+            this.labelAgi.Name = "labelAgi";
+            this.labelAgi.Size = new System.Drawing.Size(13, 13);
+            this.labelAgi.TabIndex = 11;
+            this.labelAgi.Text = "0";
+            // 
+            // labelInt
+            // 
+            this.labelInt.AutoSize = true;
+            this.labelInt.Location = new System.Drawing.Point(295, 159);
+            this.labelInt.Name = "labelInt";
+            this.labelInt.Size = new System.Drawing.Size(13, 13);
+            this.labelInt.TabIndex = 12;
+            this.labelInt.Text = "0";
+            // 
+            // labelSta
+            // 
+            this.labelSta.AutoSize = true;
+            this.labelSta.Location = new System.Drawing.Point(295, 210);
+            this.labelSta.Name = "labelSta";
+            this.labelSta.Size = new System.Drawing.Size(13, 13);
+            this.labelSta.TabIndex = 13;
+            this.labelSta.Text = "0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 541);
+            this.Controls.Add(this.labelSta);
+            this.Controls.Add(this.labelInt);
+            this.Controls.Add(this.labelAgi);
+            this.Controls.Add(this.labelStr);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -201,6 +245,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelStr;
+        private System.Windows.Forms.Label labelAgi;
+        private System.Windows.Forms.Label labelInt;
+        private System.Windows.Forms.Label labelSta;
     }
 }
 

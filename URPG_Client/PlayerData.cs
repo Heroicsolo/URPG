@@ -75,6 +75,11 @@ namespace URPG_Client
 
         //public bool GetDamage(uint damage, bool avoidable = true);
 
+        public PlayerData()
+        {
+            m_stats = new PlayerStats();
+        }
+
         public PlayerStats GetStats()
         {
             return m_stats;

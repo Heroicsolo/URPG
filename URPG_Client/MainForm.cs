@@ -21,6 +21,8 @@ namespace URPG_Client
         private IPAddress ipAddr;
         private Socket sender;
 
+        private const int STATS_POINTS = 20;
+
         private PlayerData m_pData;
 
         public void SendPlayerData()
@@ -94,7 +96,7 @@ namespace URPG_Client
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            m_pData = new PlayerData();
         }
 
         public void ProcessServerResponse(byte[] response)
@@ -123,24 +125,41 @@ namespace URPG_Client
             Disconnect();
         }
 
+        private bool IsPrimaryStatsFilled()
+        {
+            return trackBarStrength.Value + trackBarAgility.Value + trackBarIntelligence.Value + trackBarStamina.Value >= STATS_POINTS;
+        }
+
         private void trackBarStrength_Scroll(object sender, EventArgs e)
         {
+            if (IsPrimaryStatsFilled())
+                trackBarStrength.Value = STATS_POINTS - (trackBarAgility.Value + trackBarIntelligence.Value + trackBarStamina.Value);
             m_pData.GetStats().m_strength = (uint)trackBarStrength.Value;
+            labelStr.Text = trackBarStrength.Value.ToString();
         }
 
         private void trackBarAgility_Scroll(object sender, EventArgs e)
         {
+            if (IsPrimaryStatsFilled())
+                trackBarAgility.Value = STATS_POINTS - (trackBarStrength.Value + trackBarIntelligence.Value + trackBarStamina.Value);
             m_pData.GetStats().m_agility = (uint)trackBarAgility.Value;
+            labelAgi.Text = trackBarAgility.Value.ToString();
         }
 
         private void trackBarIntelligence_Scroll(object sender, EventArgs e)
         {
+            if (IsPrimaryStatsFilled())
+                trackBarIntelligence.Value = STATS_POINTS - (trackBarAgility.Value + trackBarStrength.Value + trackBarStamina.Value);
             m_pData.GetStats().m_intelligence = (uint)trackBarIntelligence.Value;
+            labelInt.Text = trackBarIntelligence.Value.ToString();
         }
 
         private void trackBarStamina_Scroll(object sender, EventArgs e)
         {
+            if (IsPrimaryStatsFilled())
+                trackBarStamina.Value = STATS_POINTS - (trackBarAgility.Value + trackBarIntelligence.Value + trackBarStrength.Value);
             m_pData.GetStats().m_stamina = (uint)trackBarStamina.Value;
+            labelSta.Text = trackBarStamina.Value.ToString();
         }
     }
 }
