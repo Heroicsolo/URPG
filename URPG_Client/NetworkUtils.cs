@@ -27,7 +27,7 @@ namespace URPG_Client
             if (SessionData.s_gameType == "ClassicFantasy")
                 ClassicFantasy.Mechanics.PlayerData.Deserialize(data);
             else if (SessionData.s_gameType == "Fallout")
-            { }
+                Fallout.Mechanics.PlayerData.Deserialize(data);
         }
 
         public static bool Connect(string address)
