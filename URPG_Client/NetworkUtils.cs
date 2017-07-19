@@ -14,40 +14,23 @@ namespace URPG_Client
 {
     static class NetworkUtils
     {
-        private IPAddress ipAddr;
-        private Socket sender;
-        public static PlayerData m_pData;
+        static IPAddress ipAddr;
+        static Socket sender;
 
         public static void Init()
         {
-            m_pData = new PlayerData();
-
             //Connect(""); //here we will connect to the server
         }
 
-        public static PlayerStats GetCharacterStats()
+        public static void GetPlayerData(byte[] data)
         {
-            return m_pData.GetStats();
+            if (SessionData.s_gameType == "ClassicFantasy")
+                ClassicFantasy.Mechanics.PlayerData.Deserialize(data);
+            else if (SessionData.s_gameType == "Fallout")
+            { }
         }
 
-        public void SendPlayerData()
-        {
-            IFormatter formatter = new BinaryFormatter();
-            MemoryStream stream = new MemoryStream();
-            formatter.Serialize(stream, m_pData.GetStats());
-            SendMessage(stream.ToArray());
-            stream.Close();
-        }
-
-        public void GetPlayerData(byte[] data)
-        {
-            IFormatter formatter = new BinaryFormatter();
-            MemoryStream stream = new MemoryStream();
-            m_pData.SetStats(formatter.Deserialize(stream) as PlayerStats);
-            stream.Close();
-        }
-
-        public bool Connect(string address)
+        public static bool Connect(string address)
         {
             IPHostEntry ipHost = Dns.GetHostEntry("localhost");
             //ipAddr = ipHost.AddressList[0];
@@ -68,7 +51,7 @@ namespace URPG_Client
             return true;
         }
 
-        public void Disconnect()
+        public static void Disconnect()
         {
             byte[] msg = Encoding.UTF8.GetBytes("/leave");
             int bytesSent = sender.Send(msg);
@@ -83,12 +66,12 @@ namespace URPG_Client
             }
         }
 
-        public void ProcessServerResponse(byte[] response)
+        public static void ProcessServerResponse(byte[] response)
         {
 
         }
 
-        public void SendMessage(byte[] data)
+        public static void SendMessage(byte[] data)
         {
             int bytesSent = sender.Send(data);
 

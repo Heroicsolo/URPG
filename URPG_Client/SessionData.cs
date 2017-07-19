@@ -16,6 +16,7 @@ namespace URPG_Client
         public static int i_qualitiesPoints;
         public static int i_maxPlayers;
         public static string s_name;
+        public static string s_gameType;
 
         public static void Init()
         {
@@ -23,6 +24,7 @@ namespace URPG_Client
             i_qualitiesPoints = QUALITIES_MAX_DEFAULT;
             s_name = "MySession";
             i_maxPlayers = 4;
+            s_gameType = "ClassicFantasy";
         }
     }
 }

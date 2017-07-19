@@ -19,6 +19,7 @@ namespace URPG_Client
     public partial class CharacterForm : Form
     {
         private int m_checkedQualities = 0;
+        private ClassicFantasy.Mechanics.PlayerStats p_stats;
 
         public CharacterForm()
         {
@@ -27,7 +28,8 @@ namespace URPG_Client
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            ClassicFantasy.Mechanics.PlayerData.Init();
+            p_stats = ClassicFantasy.Mechanics.PlayerData.GetStats();
         }
 
         private bool IsPrimaryStatsFilled()
@@ -39,7 +41,7 @@ namespace URPG_Client
         {
             if (IsPrimaryStatsFilled())
                 trackBarStrength.Value = SessionData.i_statsPoints - (trackBarAgility.Value + trackBarIntelligence.Value + trackBarStamina.Value);
-            NetworkUtils.GetCharacterStats().m_strength = (uint)trackBarStrength.Value;
+            p_stats.m_strength = (uint)trackBarStrength.Value;
             labelStr.Text = trackBarStrength.Value.ToString();
             RefreshCharacterInfo();
         }
@@ -48,7 +50,7 @@ namespace URPG_Client
         {
             if (IsPrimaryStatsFilled())
                 trackBarAgility.Value = SessionData.i_statsPoints - (trackBarStrength.Value + trackBarIntelligence.Value + trackBarStamina.Value);
-            NetworkUtils.GetCharacterStats().m_agility = (uint)trackBarAgility.Value;
+            p_stats.m_agility = (uint)trackBarAgility.Value;
             labelAgi.Text = trackBarAgility.Value.ToString();
             RefreshCharacterInfo();
         }
@@ -57,7 +59,7 @@ namespace URPG_Client
         {
             if (IsPrimaryStatsFilled())
                 trackBarIntelligence.Value = SessionData.i_statsPoints - (trackBarAgility.Value + trackBarStrength.Value + trackBarStamina.Value);
-            NetworkUtils.GetCharacterStats().m_intelligence = (uint)trackBarIntelligence.Value;
+            p_stats.m_intelligence = (uint)trackBarIntelligence.Value;
             labelInt.Text = trackBarIntelligence.Value.ToString();
             RefreshCharacterInfo();
         }
@@ -66,22 +68,20 @@ namespace URPG_Client
         {
             if (IsPrimaryStatsFilled())
                 trackBarStamina.Value = SessionData.i_statsPoints - (trackBarAgility.Value + trackBarIntelligence.Value + trackBarStrength.Value);
-            NetworkUtils.GetCharacterStats().m_stamina = (uint)trackBarStamina.Value;
+            p_stats.m_stamina = (uint)trackBarStamina.Value;
             labelSta.Text = trackBarStamina.Value.ToString();
             RefreshCharacterInfo();
         }
 
         private void RefreshCharacterInfo()
         {
-            PlayerStats pStats = NetworkUtils.GetCharacterStats();
-
-            NetworkUtils.m_pData.CalculateStats();
+            ClassicFantasy.Mechanics.PlayerData.CalculateStats();
             labelInfo.Text = "HP: " +
-                pStats.m_HP_max + "\nMP: " +
-                pStats.m_MP_max +
-                "\nEP: " + pStats.m_EP_max +
-                "\nDODGE: " + (100 * pStats.m_dodgeChance) +
-                "%\nARMOR: " + (100 * pStats.m_armor) + "%";
+                p_stats.m_HP_max + "\nMP: " +
+                p_stats.m_MP_max +
+                "\nEP: " + p_stats.m_EP_max +
+                "\nDODGE: " + (100 * p_stats.m_dodgeChance) +
+                "%\nARMOR: " + (100 * p_stats.m_armor) + "%";
         }
 
         private void CheckCheckboxes()
@@ -113,12 +113,12 @@ namespace URPG_Client
         {
             if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxPoisonResist.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_poisonResist = true;
+                p_stats.m_poisonResist = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxPoisonResist.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_poisonResist = false;
+                p_stats.m_poisonResist = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -128,12 +128,12 @@ namespace URPG_Client
         {
             if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxAmbidextry.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_ambidextry = true;
+                p_stats.m_ambidextry = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxAmbidextry.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_ambidextry = false;
+                p_stats.m_ambidextry = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -143,12 +143,12 @@ namespace URPG_Client
         {
             if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxCrit.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_criticalStrikes = true;
+                p_stats.m_criticalStrikes = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxCrit.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_criticalStrikes = false;
+                p_stats.m_criticalStrikes = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -158,12 +158,12 @@ namespace URPG_Client
         {
             if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxRegen.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_regen = true;
+                p_stats.m_regen = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxRegen.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_regen = false;
+                p_stats.m_regen = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -173,12 +173,12 @@ namespace URPG_Client
         {
             if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxArcane.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_arcaneIntelligence = true;
+                p_stats.m_arcaneIntelligence = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxArcane.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_arcaneIntelligence = false;
+                p_stats.m_arcaneIntelligence = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -188,12 +188,12 @@ namespace URPG_Client
         {
             if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxDodginess.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_dodginess = true;
+                p_stats.m_dodginess = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxDodginess.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_dodginess = false;
+                p_stats.m_dodginess = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -203,12 +203,12 @@ namespace URPG_Client
         {
             if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxWeaponMaster.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_weaponMaster = true;
+                p_stats.m_weaponMaster = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxWeaponMaster.Checked)
             {
-                NetworkUtils.GetCharacterStats().m_weaponMaster = false;
+                p_stats.m_weaponMaster = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
