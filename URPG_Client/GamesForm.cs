@@ -15,6 +15,7 @@ namespace URPG_Client
         public GamesForm()
         {
             InitializeComponent();
+            NetworkUtils.Init();
         }
     }
 }

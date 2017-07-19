@@ -18,79 +18,7 @@ namespace URPG_Client
 {
     public partial class CharacterForm : Form
     {
-        private IPAddress ipAddr;
-        private Socket sender;
-
-        private const int STATS_POINTS = 20;
-        private const int QUALITIES_MAX = 2;
-
         private int m_checkedQualities = 0;
-
-        private PlayerData m_pData;
-
-        public void SendPlayerData()
-        {
-            IFormatter formatter = new BinaryFormatter();
-            MemoryStream stream = new MemoryStream();
-            formatter.Serialize(stream, m_pData.GetStats());
-            SendMessage(stream.ToArray());
-            stream.Close();
-        }
-
-        public void GetPlayerData(byte[] data)
-        {
-            IFormatter formatter = new BinaryFormatter();
-            MemoryStream stream = new MemoryStream();
-            m_pData.SetStats(formatter.Deserialize(stream) as PlayerStats);
-            stream.Close();
-        }
-
-        public bool Connect(string address, string name, string pass)
-        {
-            IPHostEntry ipHost = Dns.GetHostEntry("localhost");
-            //ipAddr = ipHost.AddressList[0];
-            ipAddr = IPAddress.Parse(address);
-
-            IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, 11000);
-
-            sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-            sender.Connect(ipEndPoint);
-
-            byte[] msg = Encoding.UTF8.GetBytes("/connect");
-            int bytesSent = sender.Send(msg);
-
-            if (bytesSent <= 0)
-              return false;
-
-            msg = Encoding.UTF8.GetBytes("/login:" + name + ":" + pass);
-            bytesSent = sender.Send(msg);
-
-            byte[] bytes = new byte[1024];
-            int bytesRec = sender.Receive(bytes);
-
-            if (bytesRec > 0)
-            {
-                SendPlayerData();
-            }
-
-            return true;
-        }
-
-        public void Disconnect()
-        {
-            byte[] msg = Encoding.UTF8.GetBytes("/leave");
-            int bytesSent = sender.Send(msg);
-
-            byte[] bytes = new byte[1024];
-            int bytesRec = sender.Receive(bytes);
-
-            if (bytesRec > 0)
-            {
-                sender.Shutdown(SocketShutdown.Both);
-                sender.Close();
-            }
-        }
 
         public CharacterForm()
         {
@@ -99,45 +27,19 @@ namespace URPG_Client
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            m_pData = new PlayerData();
-        }
 
-        public void ProcessServerResponse(byte[] response)
-        {
-
-        }
-
-        public void SendMessage(byte[] data)
-        {
-            int bytesSent = sender.Send(data);
-
-            byte[] bytes = new byte[1024];
-            int bytesRec = sender.Receive(bytes);
-
-            ProcessServerResponse(bytes);
-        }
-
-        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoginForm login = new LoginForm(this);
-            login.Show();
-        }
-
-        private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Disconnect();
         }
 
         private bool IsPrimaryStatsFilled()
         {
-            return trackBarStrength.Value + trackBarAgility.Value + trackBarIntelligence.Value + trackBarStamina.Value >= STATS_POINTS;
+            return trackBarStrength.Value + trackBarAgility.Value + trackBarIntelligence.Value + trackBarStamina.Value >= SessionData.i_statsPoints;
         }
 
         private void trackBarStrength_Scroll(object sender, EventArgs e)
         {
             if (IsPrimaryStatsFilled())
-                trackBarStrength.Value = STATS_POINTS - (trackBarAgility.Value + trackBarIntelligence.Value + trackBarStamina.Value);
-            m_pData.GetStats().m_strength = (uint)trackBarStrength.Value;
+                trackBarStrength.Value = SessionData.i_statsPoints - (trackBarAgility.Value + trackBarIntelligence.Value + trackBarStamina.Value);
+            NetworkUtils.GetCharacterStats().m_strength = (uint)trackBarStrength.Value;
             labelStr.Text = trackBarStrength.Value.ToString();
             RefreshCharacterInfo();
         }
@@ -145,8 +47,8 @@ namespace URPG_Client
         private void trackBarAgility_Scroll(object sender, EventArgs e)
         {
             if (IsPrimaryStatsFilled())
-                trackBarAgility.Value = STATS_POINTS - (trackBarStrength.Value + trackBarIntelligence.Value + trackBarStamina.Value);
-            m_pData.GetStats().m_agility = (uint)trackBarAgility.Value;
+                trackBarAgility.Value = SessionData.i_statsPoints - (trackBarStrength.Value + trackBarIntelligence.Value + trackBarStamina.Value);
+            NetworkUtils.GetCharacterStats().m_agility = (uint)trackBarAgility.Value;
             labelAgi.Text = trackBarAgility.Value.ToString();
             RefreshCharacterInfo();
         }
@@ -154,8 +56,8 @@ namespace URPG_Client
         private void trackBarIntelligence_Scroll(object sender, EventArgs e)
         {
             if (IsPrimaryStatsFilled())
-                trackBarIntelligence.Value = STATS_POINTS - (trackBarAgility.Value + trackBarStrength.Value + trackBarStamina.Value);
-            m_pData.GetStats().m_intelligence = (uint)trackBarIntelligence.Value;
+                trackBarIntelligence.Value = SessionData.i_statsPoints - (trackBarAgility.Value + trackBarStrength.Value + trackBarStamina.Value);
+            NetworkUtils.GetCharacterStats().m_intelligence = (uint)trackBarIntelligence.Value;
             labelInt.Text = trackBarIntelligence.Value.ToString();
             RefreshCharacterInfo();
         }
@@ -163,26 +65,28 @@ namespace URPG_Client
         private void trackBarStamina_Scroll(object sender, EventArgs e)
         {
             if (IsPrimaryStatsFilled())
-                trackBarStamina.Value = STATS_POINTS - (trackBarAgility.Value + trackBarIntelligence.Value + trackBarStrength.Value);
-            m_pData.GetStats().m_stamina = (uint)trackBarStamina.Value;
+                trackBarStamina.Value = SessionData.i_statsPoints - (trackBarAgility.Value + trackBarIntelligence.Value + trackBarStrength.Value);
+            NetworkUtils.GetCharacterStats().m_stamina = (uint)trackBarStamina.Value;
             labelSta.Text = trackBarStamina.Value.ToString();
             RefreshCharacterInfo();
         }
 
         private void RefreshCharacterInfo()
         {
-            m_pData.CalculateStats();
+            PlayerStats pStats = NetworkUtils.GetCharacterStats();
+
+            NetworkUtils.m_pData.CalculateStats();
             labelInfo.Text = "HP: " +
-                m_pData.GetStats().m_HP_max + "\nMP: " +
-                m_pData.GetStats().m_MP_max +
-                "\nEP: " + m_pData.GetStats().m_EP_max +
-                "\nDODGE: " + (100 * m_pData.GetStats().m_dodgeChance) +
-                "%\nARMOR: " + (100 * m_pData.GetStats().m_armor) + "%";
+                pStats.m_HP_max + "\nMP: " +
+                pStats.m_MP_max +
+                "\nEP: " + pStats.m_EP_max +
+                "\nDODGE: " + (100 * pStats.m_dodgeChance) +
+                "%\nARMOR: " + (100 * pStats.m_armor) + "%";
         }
 
         private void CheckCheckboxes()
         {
-            if (m_checkedQualities >= QUALITIES_MAX)
+            if (m_checkedQualities >= SessionData.i_qualitiesPoints)
             {
                 checkBoxCrit.Enabled = checkBoxCrit.Checked;
                 checkBoxRegen.Enabled = checkBoxRegen.Checked;
@@ -207,14 +111,14 @@ namespace URPG_Client
 
         private void checkBoxPoisonResist_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_checkedQualities < QUALITIES_MAX && checkBoxPoisonResist.Checked)
+            if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxPoisonResist.Checked)
             {
-                m_pData.GetStats().m_poisonResist = true;
+                NetworkUtils.GetCharacterStats().m_poisonResist = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxPoisonResist.Checked)
             {
-                m_pData.GetStats().m_poisonResist = false;
+                NetworkUtils.GetCharacterStats().m_poisonResist = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -222,14 +126,14 @@ namespace URPG_Client
 
         private void checkBoxAmbidextry_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_checkedQualities < QUALITIES_MAX && checkBoxAmbidextry.Checked)
+            if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxAmbidextry.Checked)
             {
-                m_pData.GetStats().m_ambidextry = true;
+                NetworkUtils.GetCharacterStats().m_ambidextry = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxAmbidextry.Checked)
             {
-                m_pData.GetStats().m_ambidextry = false;
+                NetworkUtils.GetCharacterStats().m_ambidextry = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -237,14 +141,14 @@ namespace URPG_Client
 
         private void checkBoxCrit_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_checkedQualities < QUALITIES_MAX && checkBoxCrit.Checked)
+            if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxCrit.Checked)
             {
-                m_pData.GetStats().m_criticalStrikes = true;
+                NetworkUtils.GetCharacterStats().m_criticalStrikes = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxCrit.Checked)
             {
-                m_pData.GetStats().m_criticalStrikes = false;
+                NetworkUtils.GetCharacterStats().m_criticalStrikes = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -252,14 +156,14 @@ namespace URPG_Client
 
         private void checkBoxRegen_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_checkedQualities < QUALITIES_MAX && checkBoxRegen.Checked)
+            if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxRegen.Checked)
             {
-                m_pData.GetStats().m_regen = true;
+                NetworkUtils.GetCharacterStats().m_regen = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxRegen.Checked)
             {
-                m_pData.GetStats().m_regen = false;
+                NetworkUtils.GetCharacterStats().m_regen = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -267,14 +171,14 @@ namespace URPG_Client
 
         private void checkBoxArcane_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_checkedQualities < QUALITIES_MAX && checkBoxArcane.Checked)
+            if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxArcane.Checked)
             {
-                m_pData.GetStats().m_arcaneIntelligence = true;
+                NetworkUtils.GetCharacterStats().m_arcaneIntelligence = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxArcane.Checked)
             {
-                m_pData.GetStats().m_arcaneIntelligence = false;
+                NetworkUtils.GetCharacterStats().m_arcaneIntelligence = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -282,14 +186,14 @@ namespace URPG_Client
 
         private void checkBoxDodginess_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_checkedQualities < QUALITIES_MAX && checkBoxDodginess.Checked)
+            if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxDodginess.Checked)
             {
-                m_pData.GetStats().m_dodginess = true;
+                NetworkUtils.GetCharacterStats().m_dodginess = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxDodginess.Checked)
             {
-                m_pData.GetStats().m_dodginess = false;
+                NetworkUtils.GetCharacterStats().m_dodginess = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();
@@ -297,14 +201,14 @@ namespace URPG_Client
 
         private void checkBoxWeaponMaster_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_checkedQualities < QUALITIES_MAX && checkBoxWeaponMaster.Checked)
+            if (m_checkedQualities < SessionData.i_qualitiesPoints && checkBoxWeaponMaster.Checked)
             {
-                m_pData.GetStats().m_weaponMaster = true;
+                NetworkUtils.GetCharacterStats().m_weaponMaster = true;
                 m_checkedQualities++;
             }
             else if (!checkBoxWeaponMaster.Checked)
             {
-                m_pData.GetStats().m_weaponMaster = false;
+                NetworkUtils.GetCharacterStats().m_weaponMaster = false;
                 m_checkedQualities--;
             }
             CheckCheckboxes();

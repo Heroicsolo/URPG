@@ -21,7 +21,7 @@ namespace URPG_Server
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, 11000);
 
             // Создаем сокет Tcp/Ip
-            Socket sListener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            Socket sListener = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
             // Назначаем сокет локальной конечной точке и слушаем входящие сокеты
             try
