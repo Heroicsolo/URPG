@@ -41,6 +41,8 @@ namespace URPG_Client.ClassicFantasy
         [Serializable]
         public class PlayerStats
         {
+            public string s_name;
+
             public float m_dodgeChance;
             public float m_armor;
             public float m_damageModifier;
@@ -109,11 +111,24 @@ namespace URPG_Client.ClassicFantasy
               m_stats.m_EP_max = 10 + 5 * m_stats.m_stamina;
             }
 
-            public static void Deserialize(byte[] data)
+            public static void Deserialize(byte[] data, string s_playerName)
             {
                 IFormatter formatter = new BinaryFormatter();
                 MemoryStream stream = new MemoryStream(data);
-                m_stats = formatter.Deserialize(stream) as PlayerStats;
+                PlayerStats stats = formatter.Deserialize(stream) as PlayerStats;
+                if (s_playerName == "")
+                  m_stats = stats;
+                else
+                {
+                   if (m_opponentsStats.ContainsKey(s_playerName))
+                   {
+                       m_opponentsStats[s_playerName] = stats;
+                   }
+                   else
+                   {
+                       m_opponentsStats.Add(s_playerName, stats);
+                   }
+                }
                 stream.Close();
             }
 
@@ -129,6 +144,7 @@ namespace URPG_Client.ClassicFantasy
             }
 
             static PlayerStats m_stats;
+            static Dictionary<string, PlayerStats> m_opponentsStats;
         }
     }
 }

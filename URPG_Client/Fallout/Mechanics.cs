@@ -57,11 +57,24 @@ namespace URPG_Client.Fallout
               
             }
 
-            public static void Deserialize(byte[] data)
+            public static void Deserialize(byte[] data, string s_playerName)
             {
                 IFormatter formatter = new BinaryFormatter();
                 MemoryStream stream = new MemoryStream(data);
-                m_stats = formatter.Deserialize(stream) as PlayerStats;
+                PlayerStats stats = formatter.Deserialize(stream) as PlayerStats;
+                if (s_playerName == "")
+                    m_stats = stats;
+                else
+                {
+                    if (m_opponentsStats.ContainsKey(s_playerName))
+                    {
+                        m_opponentsStats[s_playerName] = stats;
+                    }
+                    else
+                    {
+                        m_opponentsStats.Add(s_playerName, stats);
+                    }
+                }
                 stream.Close();
             }
 
@@ -77,6 +90,7 @@ namespace URPG_Client.Fallout
             }
 
             static PlayerStats m_stats;
+            static Dictionary<string, PlayerStats> m_opponentsStats;
         }
     }
 }

@@ -25,9 +25,17 @@ namespace URPG_Client
         public static void GetPlayerData(byte[] data)
         {
             if (SessionData.s_gameType == "ClassicFantasy")
-                ClassicFantasy.Mechanics.PlayerData.Deserialize(data);
+                ClassicFantasy.Mechanics.PlayerData.Deserialize(data, "");
             else if (SessionData.s_gameType == "Fallout")
-                Fallout.Mechanics.PlayerData.Deserialize(data);
+                Fallout.Mechanics.PlayerData.Deserialize(data, "");
+        }
+
+        public static void GetOpponentData(byte[] data, string s_opponentName)
+        {
+            if (SessionData.s_gameType == "ClassicFantasy")
+                ClassicFantasy.Mechanics.PlayerData.Deserialize(data, s_opponentName);
+            else if (SessionData.s_gameType == "Fallout")
+                Fallout.Mechanics.PlayerData.Deserialize(data, s_opponentName);
         }
 
         public static bool Connect(string address)
