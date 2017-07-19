@@ -1,6 +1,6 @@
 ﻿namespace URPG_Client
 {
-    partial class CharacterScreen
+    partial class CharacterForm
     {
         /// <summary>
         /// Required designer variable.

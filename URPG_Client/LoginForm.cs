@@ -12,9 +12,9 @@ namespace URPG_Client
 {
     public partial class LoginForm : Form
     {
-        private CharacterScreen m_parentForm;
+        private CharacterForm m_parentForm;
 
-        public LoginForm(CharacterScreen parentForm)
+        public LoginForm(CharacterForm parentForm)
         {
             m_parentForm = parentForm;
             InitializeComponent();

@@ -16,7 +16,7 @@ using System.IO;
 
 namespace URPG_Client
 {
-    public partial class CharacterScreen : Form
+    public partial class CharacterForm : Form
     {
         private IPAddress ipAddr;
         private Socket sender;
@@ -92,7 +92,7 @@ namespace URPG_Client
             }
         }
 
-        public CharacterScreen()
+        public CharacterForm()
         {
             InitializeComponent();
         }
