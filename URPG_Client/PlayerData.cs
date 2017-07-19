@@ -61,10 +61,16 @@ namespace URPG_Client
         public uint m_EP_max;
         public uint m_HP_max;
 
-        public uint m_regen;
-
+        public bool m_regen;
         public bool m_ambidextry;
         public bool m_poisonResist;
+        public bool m_criticalStrikes;
+        public bool m_arcaneIntelligence;
+        public bool m_weaponMaster;
+        public bool m_dodginess;
+
+        public uint m_leftHandWeapon;
+        public uint m_rightHandWeapon;
 
         public List<AbilityStats> m_abilities;
     }
@@ -88,6 +94,15 @@ namespace URPG_Client
         public void SetStats(PlayerStats stats)
         {
             m_stats = stats;
+        }
+
+        public void CalculateStats()
+        {
+            m_stats.m_HP_max = 100 + 10 * m_stats.m_stamina;
+            m_stats.m_MP_max = (uint)Math.Round(10 * Math.Sqrt(m_stats.m_intelligence));
+            m_stats.m_armor = (float)Math.Round(0.9f * m_stats.m_strength/20, 2);
+            m_stats.m_dodgeChance = (float)Math.Round(0.15f * (m_stats.m_dodginess ? 1.2f : 1.0f) * (float)Math.Sqrt(m_stats.m_agility), 2);
+            m_stats.m_EP_max = 10 + 5 * m_stats.m_stamina;
         }
 
         private PlayerStats m_stats;
