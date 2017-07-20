@@ -103,6 +103,7 @@
             this.checkBoxWeaponMaster.TabIndex = 20;
             this.checkBoxWeaponMaster.Text = "Weapon master (-1 EP cost and +1 damage for all weapon attacks)";
             this.checkBoxWeaponMaster.UseVisualStyleBackColor = true;
+            this.checkBoxWeaponMaster.CheckedChanged += new System.EventHandler(this.checkBoxWeaponMaster_CheckedChanged);
             // 
             // checkBoxDodginess
             // 
@@ -113,6 +114,7 @@
             this.checkBoxDodginess.TabIndex = 19;
             this.checkBoxDodginess.Text = "Dodginess (+20% for dodge modifier given from your agility)";
             this.checkBoxDodginess.UseVisualStyleBackColor = true;
+            this.checkBoxDodginess.CheckedChanged += new System.EventHandler(this.checkBoxDodginess_CheckedChanged);
             // 
             // checkBoxArcane
             // 
@@ -123,6 +125,7 @@
             this.checkBoxArcane.TabIndex = 18;
             this.checkBoxArcane.Text = "Arcane intelligence (-25% of MP cost for all abilities with 8 MP cost or more)";
             this.checkBoxArcane.UseVisualStyleBackColor = true;
+            this.checkBoxArcane.CheckedChanged += new System.EventHandler(this.checkBoxArcane_CheckedChanged);
             // 
             // checkBoxPoisonResist
             // 
@@ -133,6 +136,7 @@
             this.checkBoxPoisonResist.TabIndex = 14;
             this.checkBoxPoisonResist.Text = "Poison resistance (-50% damage from poisons)";
             this.checkBoxPoisonResist.UseVisualStyleBackColor = true;
+            this.checkBoxPoisonResist.CheckedChanged += new System.EventHandler(this.checkBoxPoisonResist_CheckedChanged);
             // 
             // checkBoxAmbidextry
             // 
@@ -143,6 +147,7 @@
             this.checkBoxAmbidextry.TabIndex = 15;
             this.checkBoxAmbidextry.Text = "Ambidexterity (left hand does full damage)";
             this.checkBoxAmbidextry.UseVisualStyleBackColor = true;
+            this.checkBoxAmbidextry.CheckedChanged += new System.EventHandler(this.checkBoxAmbidextry_CheckedChanged);
             // 
             // checkBoxRegen
             // 
@@ -153,6 +158,7 @@
             this.checkBoxRegen.TabIndex = 17;
             this.checkBoxRegen.Text = "Regeneration (+5 HP and +3 EP per turn)";
             this.checkBoxRegen.UseVisualStyleBackColor = true;
+            this.checkBoxRegen.CheckedChanged += new System.EventHandler(this.checkBoxRegen_CheckedChanged);
             // 
             // checkBoxCrit
             // 
@@ -163,6 +169,7 @@
             this.checkBoxCrit.TabIndex = 16;
             this.checkBoxCrit.Text = "Critical strikes (+25% damage from your direct attacks and abilities)";
             this.checkBoxCrit.UseVisualStyleBackColor = true;
+            this.checkBoxCrit.CheckedChanged += new System.EventHandler(this.checkBoxCrit_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -193,6 +200,7 @@
             this.trackBarStrength.Name = "trackBarStrength";
             this.trackBarStrength.Size = new System.Drawing.Size(232, 45);
             this.trackBarStrength.TabIndex = 1;
+            this.trackBarStrength.ValueChanged += new System.EventHandler(this.trackBarStrength_Scroll);
             // 
             // trackBarAgility
             // 
@@ -202,6 +210,7 @@
             this.trackBarAgility.Name = "trackBarAgility";
             this.trackBarAgility.Size = new System.Drawing.Size(232, 45);
             this.trackBarAgility.TabIndex = 2;
+            this.trackBarAgility.ValueChanged += new System.EventHandler(this.trackBarAgility_Scroll);
             // 
             // trackBarIntelligence
             // 
@@ -211,6 +220,7 @@
             this.trackBarIntelligence.Name = "trackBarIntelligence";
             this.trackBarIntelligence.Size = new System.Drawing.Size(232, 45);
             this.trackBarIntelligence.TabIndex = 3;
+            this.trackBarIntelligence.ValueChanged += new System.EventHandler(this.trackBarIntelligence_Scroll);
             // 
             // trackBarStamina
             // 
@@ -220,6 +230,7 @@
             this.trackBarStamina.Name = "trackBarStamina";
             this.trackBarStamina.Size = new System.Drawing.Size(232, 45);
             this.trackBarStamina.TabIndex = 4;
+            this.trackBarStamina.ValueChanged += new System.EventHandler(this.trackBarStamina_Scroll);
             // 
             // label1
             // 

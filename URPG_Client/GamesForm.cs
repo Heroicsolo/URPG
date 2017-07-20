@@ -18,6 +18,7 @@ namespace URPG_Client
             NetworkUtils.Init();
 
             RemoveNextTabs();
+            SessionData.Init();
         }
 
         private void RemoveNextTabs()
@@ -43,6 +44,15 @@ namespace URPG_Client
         {
             tabControlMain.TabPages.Add(tabPageCharacter);
             tabControlMain.SelectTab(1);
+            if (gamesListBox.SelectedItem == "Classic fantasy")
+            {
+                ClassicFantasy.GUI fantasyGUI = new ClassicFantasy.GUI();
+                tabPageCharacter.Controls.Add(fantasyGUI);
+            }
+            else if (gamesListBox.SelectedItem == "Fallout")
+            {
+                //some Fallout stuff
+            }
         }
 
         private void createButton_Click(object sender, EventArgs e)
@@ -61,6 +71,15 @@ namespace URPG_Client
         {
             tabControlMain.TabPages.Add(tabPageCharacter);
             tabControlMain.SelectTab(2);
+            if (gamesListBox.SelectedItem == "Classic fantasy")
+            {
+                ClassicFantasy.GUI fantasyGUI = new ClassicFantasy.GUI();
+                tabPageCharacter.Controls.Add(fantasyGUI);
+            }
+            else if (gamesListBox.SelectedItem == "Fallout")
+            {
+                //some Fallout stuff
+            }
         }
 
         private void trackBarStrength_Scroll(object sender, EventArgs e)

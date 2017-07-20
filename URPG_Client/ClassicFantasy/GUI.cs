@@ -29,7 +29,11 @@ namespace URPG_Client.ClassicFantasy
 
         public void trackBarStrength_Scroll(object sender, EventArgs e)
         {
-
+            if (IsPrimaryStatsFilled())
+                trackBarStrength.Value = SessionData.i_statsPoints - (trackBarAgility.Value + trackBarIntelligence.Value + trackBarStamina.Value);
+            p_stats.m_strength = (uint)trackBarStrength.Value;
+            labelStr.Text = trackBarStrength.Value.ToString();
+            RefreshCharacterInfo();
         }
 
         private void trackBarAgility_Scroll(object sender, EventArgs e)

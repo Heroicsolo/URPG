@@ -42,16 +42,10 @@
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonLaunchSession = new System.Windows.Forms.Button();
             this.tabPageCharacter = new System.Windows.Forms.TabPage();
-            this.tabControlGame = new System.Windows.Forms.TabControl();
-            this.tabPageClassicFantasy = new System.Windows.Forms.TabPage();
-            this.tabPageFallout = new System.Windows.Forms.TabPage();
-            this.panelEditChar = new System.Windows.Forms.Panel();
             this.tabPagePlay = new System.Windows.Forms.TabPage();
             this.tabControlMain.SuspendLayout();
             this.tabPageConnect.SuspendLayout();
             this.tabPageSession.SuspendLayout();
-            this.tabPageCharacter.SuspendLayout();
-            this.tabControlGame.SuspendLayout();
             this.SuspendLayout();
             // 
             // gamesListBox
@@ -196,8 +190,6 @@
             // 
             // tabPageCharacter
             // 
-            this.tabPageCharacter.Controls.Add(this.tabControlGame);
-            this.tabPageCharacter.Controls.Add(this.panelEditChar);
             this.tabPageCharacter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPageCharacter.Location = new System.Drawing.Point(4, 22);
             this.tabPageCharacter.Name = "tabPageCharacter";
@@ -206,43 +198,6 @@
             this.tabPageCharacter.TabIndex = 1;
             this.tabPageCharacter.Text = "Edit character";
             this.tabPageCharacter.UseVisualStyleBackColor = true;
-            // 
-            // tabControlGame
-            // 
-            this.tabControlGame.Controls.Add(this.tabPageClassicFantasy);
-            this.tabControlGame.Controls.Add(this.tabPageFallout);
-            this.tabControlGame.Location = new System.Drawing.Point(0, 0);
-            this.tabControlGame.Name = "tabControlGame";
-            this.tabControlGame.SelectedIndex = 0;
-            this.tabControlGame.Size = new System.Drawing.Size(800, 600);
-            this.tabControlGame.TabIndex = 0;
-            // 
-            // tabPageClassicFantasy
-            // 
-            this.tabPageClassicFantasy.Location = new System.Drawing.Point(4, 22);
-            this.tabPageClassicFantasy.Name = "tabPageClassicFantasy";
-            this.tabPageClassicFantasy.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageClassicFantasy.Size = new System.Drawing.Size(792, 574);
-            this.tabPageClassicFantasy.TabIndex = 0;
-            this.tabPageClassicFantasy.Text = "Classic fantasy";
-            this.tabPageClassicFantasy.UseVisualStyleBackColor = true;
-            // 
-            // tabPageFallout
-            // 
-            this.tabPageFallout.Location = new System.Drawing.Point(4, 22);
-            this.tabPageFallout.Name = "tabPageFallout";
-            this.tabPageFallout.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageFallout.Size = new System.Drawing.Size(792, 574);
-            this.tabPageFallout.TabIndex = 1;
-            this.tabPageFallout.Text = "Fallout";
-            this.tabPageFallout.UseVisualStyleBackColor = true;
-            // 
-            // panelEditChar
-            // 
-            this.panelEditChar.Location = new System.Drawing.Point(0, 20);
-            this.panelEditChar.Name = "panelEditChar";
-            this.panelEditChar.Size = new System.Drawing.Size(800, 600);
-            this.panelEditChar.TabIndex = 1;
             // 
             // tabPagePlay
             // 
@@ -265,8 +220,6 @@
             this.tabPageConnect.ResumeLayout(false);
             this.tabPageConnect.PerformLayout();
             this.tabPageSession.ResumeLayout(false);
-            this.tabPageCharacter.ResumeLayout(false);
-            this.tabControlGame.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -288,9 +241,5 @@
         public System.Windows.Forms.TabPage tabPagePlay;
         public System.Windows.Forms.Button buttonBack;
         public System.Windows.Forms.Button buttonLaunchSession;
-        public System.Windows.Forms.TabControl tabControlGame;
-        public System.Windows.Forms.TabPage tabPageClassicFantasy;
-        public System.Windows.Forms.TabPage tabPageFallout;
-        public System.Windows.Forms.Panel panelEditChar;
     }
 }
