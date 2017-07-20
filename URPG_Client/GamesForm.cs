@@ -71,6 +71,11 @@ namespace URPG_Client
         {
             tabControlMain.TabPages.Add(tabPageCharacter);
             tabControlMain.SelectTab(2);
+
+            SessionData.i_minPlayers = trackBarMinPlayers.Value;
+            SessionData.i_maxPlayers = trackBarMaxPlayers.Value;
+            SessionData.s_name = textBoxSessionName.Text;
+
             if (gamesListBox.SelectedItem == "Classic fantasy")
             {
                 ClassicFantasy.GUI fantasyGUI = new ClassicFantasy.GUI(this);

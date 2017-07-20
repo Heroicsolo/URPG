@@ -9,3 +9,9 @@ D:\KDV\URPG\URPG_Server\bin\Debug\URPG_Server.pdb
 D:\KDV\URPG\URPG_Server\obj\Debug\URPG_Server.csprojResolveAssemblyReference.cache
 D:\KDV\URPG\URPG_Server\obj\Debug\URPG_Server.exe
 D:\KDV\URPG\URPG_Server\obj\Debug\URPG_Server.pdb
+D:\Work_2D\URPG\URPG_Server\bin\Debug\URPG_Server.exe.config
+D:\Work_2D\URPG\URPG_Server\bin\Debug\URPG_Server.exe
+D:\Work_2D\URPG\URPG_Server\bin\Debug\URPG_Server.pdb
+D:\Work_2D\URPG\URPG_Server\obj\Debug\URPG_Server.csprojResolveAssemblyReference.cache
+D:\Work_2D\URPG\URPG_Server\obj\Debug\URPG_Server.exe
+D:\Work_2D\URPG\URPG_Server\obj\Debug\URPG_Server.pdb

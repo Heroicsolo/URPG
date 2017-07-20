@@ -44,10 +44,18 @@
             this.tabPageCharacter = new System.Windows.Forms.TabPage();
             this.tabPagePlay = new System.Windows.Forms.TabPage();
             this.buttonPlay = new System.Windows.Forms.Button();
+            this.textBoxSessionName = new System.Windows.Forms.TextBox();
+            this.labelSessionName = new System.Windows.Forms.Label();
+            this.trackBarMinPlayers = new System.Windows.Forms.TrackBar();
+            this.trackBarMaxPlayers = new System.Windows.Forms.TrackBar();
+            this.labelMinPlayers = new System.Windows.Forms.Label();
+            this.labelMaxPlayers = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageConnect.SuspendLayout();
             this.tabPageSession.SuspendLayout();
             this.tabPageCharacter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMinPlayers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxPlayers)).BeginInit();
             this.SuspendLayout();
             // 
             // gamesListBox
@@ -160,6 +168,12 @@
             // 
             // tabPageSession
             // 
+            this.tabPageSession.Controls.Add(this.labelMaxPlayers);
+            this.tabPageSession.Controls.Add(this.labelMinPlayers);
+            this.tabPageSession.Controls.Add(this.trackBarMaxPlayers);
+            this.tabPageSession.Controls.Add(this.trackBarMinPlayers);
+            this.tabPageSession.Controls.Add(this.labelSessionName);
+            this.tabPageSession.Controls.Add(this.textBoxSessionName);
             this.tabPageSession.Controls.Add(this.buttonBack);
             this.tabPageSession.Controls.Add(this.buttonLaunchSession);
             this.tabPageSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -222,6 +236,63 @@
             this.buttonPlay.UseVisualStyleBackColor = true;
             this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
+            // textBoxSessionName
+            // 
+            this.textBoxSessionName.Location = new System.Drawing.Point(8, 57);
+            this.textBoxSessionName.MaxLength = 32;
+            this.textBoxSessionName.Name = "textBoxSessionName";
+            this.textBoxSessionName.Size = new System.Drawing.Size(276, 20);
+            this.textBoxSessionName.TabIndex = 2;
+            // 
+            // labelSessionName
+            // 
+            this.labelSessionName.AutoSize = true;
+            this.labelSessionName.Location = new System.Drawing.Point(8, 26);
+            this.labelSessionName.Name = "labelSessionName";
+            this.labelSessionName.Size = new System.Drawing.Size(76, 13);
+            this.labelSessionName.TabIndex = 3;
+            this.labelSessionName.Text = "Session name:";
+            // 
+            // trackBarMinPlayers
+            // 
+            this.trackBarMinPlayers.LargeChange = 1;
+            this.trackBarMinPlayers.Location = new System.Drawing.Point(8, 123);
+            this.trackBarMinPlayers.Maximum = 8;
+            this.trackBarMinPlayers.Minimum = 1;
+            this.trackBarMinPlayers.Name = "trackBarMinPlayers";
+            this.trackBarMinPlayers.Size = new System.Drawing.Size(276, 45);
+            this.trackBarMinPlayers.TabIndex = 4;
+            this.trackBarMinPlayers.Value = 1;
+            // 
+            // trackBarMaxPlayers
+            // 
+            this.trackBarMaxPlayers.LargeChange = 1;
+            this.trackBarMaxPlayers.Location = new System.Drawing.Point(8, 213);
+            this.trackBarMaxPlayers.Maximum = 8;
+            this.trackBarMaxPlayers.Minimum = 1;
+            this.trackBarMaxPlayers.Name = "trackBarMaxPlayers";
+            this.trackBarMaxPlayers.Size = new System.Drawing.Size(276, 45);
+            this.trackBarMaxPlayers.TabIndex = 5;
+            this.trackBarMaxPlayers.Value = 1;
+            // 
+            // labelMinPlayers
+            // 
+            this.labelMinPlayers.AutoSize = true;
+            this.labelMinPlayers.Location = new System.Drawing.Point(8, 104);
+            this.labelMinPlayers.Name = "labelMinPlayers";
+            this.labelMinPlayers.Size = new System.Drawing.Size(101, 13);
+            this.labelMinPlayers.TabIndex = 6;
+            this.labelMinPlayers.Text = "Min players number:";
+            // 
+            // labelMaxPlayers
+            // 
+            this.labelMaxPlayers.AutoSize = true;
+            this.labelMaxPlayers.Location = new System.Drawing.Point(8, 197);
+            this.labelMaxPlayers.Name = "labelMaxPlayers";
+            this.labelMaxPlayers.Size = new System.Drawing.Size(104, 13);
+            this.labelMaxPlayers.TabIndex = 7;
+            this.labelMaxPlayers.Text = "Max players number:";
+            // 
             // GamesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,7 +305,10 @@
             this.tabPageConnect.ResumeLayout(false);
             this.tabPageConnect.PerformLayout();
             this.tabPageSession.ResumeLayout(false);
+            this.tabPageSession.PerformLayout();
             this.tabPageCharacter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMinPlayers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxPlayers)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -257,5 +331,11 @@
         public System.Windows.Forms.Button buttonBack;
         public System.Windows.Forms.Button buttonLaunchSession;
         public System.Windows.Forms.Button buttonPlay;
+        private System.Windows.Forms.Label labelMaxPlayers;
+        private System.Windows.Forms.Label labelMinPlayers;
+        private System.Windows.Forms.TrackBar trackBarMaxPlayers;
+        private System.Windows.Forms.TrackBar trackBarMinPlayers;
+        private System.Windows.Forms.Label labelSessionName;
+        private System.Windows.Forms.TextBox textBoxSessionName;
     }
 }
