@@ -43,9 +43,11 @@
             this.buttonLaunchSession = new System.Windows.Forms.Button();
             this.tabPageCharacter = new System.Windows.Forms.TabPage();
             this.tabPagePlay = new System.Windows.Forms.TabPage();
+            this.buttonPlay = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPageConnect.SuspendLayout();
             this.tabPageSession.SuspendLayout();
+            this.tabPageCharacter.SuspendLayout();
             this.SuspendLayout();
             // 
             // gamesListBox
@@ -190,6 +192,7 @@
             // 
             // tabPageCharacter
             // 
+            this.tabPageCharacter.Controls.Add(this.buttonPlay);
             this.tabPageCharacter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPageCharacter.Location = new System.Drawing.Point(4, 22);
             this.tabPageCharacter.Name = "tabPageCharacter";
@@ -208,6 +211,17 @@
             this.tabPagePlay.Text = "Play";
             this.tabPagePlay.UseVisualStyleBackColor = true;
             // 
+            // buttonPlay
+            // 
+            this.buttonPlay.Enabled = false;
+            this.buttonPlay.Location = new System.Drawing.Point(682, 503);
+            this.buttonPlay.Name = "buttonPlay";
+            this.buttonPlay.Size = new System.Drawing.Size(86, 24);
+            this.buttonPlay.TabIndex = 0;
+            this.buttonPlay.Text = "Play";
+            this.buttonPlay.UseVisualStyleBackColor = true;
+            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
+            // 
             // GamesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +234,7 @@
             this.tabPageConnect.ResumeLayout(false);
             this.tabPageConnect.PerformLayout();
             this.tabPageSession.ResumeLayout(false);
+            this.tabPageCharacter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -241,5 +256,6 @@
         public System.Windows.Forms.TabPage tabPagePlay;
         public System.Windows.Forms.Button buttonBack;
         public System.Windows.Forms.Button buttonLaunchSession;
+        public System.Windows.Forms.Button buttonPlay;
     }
 }

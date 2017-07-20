@@ -46,7 +46,7 @@ namespace URPG_Client
             tabControlMain.SelectTab(1);
             if (gamesListBox.SelectedItem == "Classic fantasy")
             {
-                ClassicFantasy.GUI fantasyGUI = new ClassicFantasy.GUI();
+                ClassicFantasy.GUI fantasyGUI = new ClassicFantasy.GUI(this);
                 tabPageCharacter.Controls.Add(fantasyGUI);
             }
             else if (gamesListBox.SelectedItem == "Fallout")
@@ -73,7 +73,7 @@ namespace URPG_Client
             tabControlMain.SelectTab(2);
             if (gamesListBox.SelectedItem == "Classic fantasy")
             {
-                ClassicFantasy.GUI fantasyGUI = new ClassicFantasy.GUI();
+                ClassicFantasy.GUI fantasyGUI = new ClassicFantasy.GUI(this);
                 tabPageCharacter.Controls.Add(fantasyGUI);
             }
             else if (gamesListBox.SelectedItem == "Fallout")
@@ -82,9 +82,13 @@ namespace URPG_Client
             }
         }
 
-        private void trackBarStrength_Scroll(object sender, EventArgs e)
+        private void buttonPlay_Click(object sender, EventArgs e)
         {
-
+            tabControlMain.TabPages.Remove(tabPageConnect);
+            tabControlMain.TabPages.Remove(tabPageSession);
+            tabControlMain.TabPages.Remove(tabPageCharacter);
+            tabControlMain.TabPages.Add(tabPagePlay);
+            tabControlMain.SelectTab(0);
         }
     }
 }

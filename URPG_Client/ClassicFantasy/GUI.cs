@@ -14,9 +14,11 @@ namespace URPG_Client.ClassicFantasy
     {
         private int m_checkedQualities = 0;
         private ClassicFantasy.Mechanics.PlayerStats p_stats;
+        private GamesForm p_parent;
 
-        public GUI()
+        public GUI(GamesForm parent)
         {
+            p_parent = parent;
             InitializeComponent();
             ClassicFantasy.Mechanics.PlayerData.Init();
             p_stats = ClassicFantasy.Mechanics.PlayerData.GetStats();
@@ -72,6 +74,15 @@ namespace URPG_Client.ClassicFantasy
                 "\nEP: " + p_stats.m_EP_max +
                 "\nDODGE: " + (100 * p_stats.m_dodgeChance) +
                 "%\nARMOR: " + (100 * p_stats.m_armor) + "%";
+
+            if (m_checkedQualities + trackBarStamina.Value + trackBarAgility.Value + trackBarIntelligence.Value + trackBarStrength.Value >= SessionData.i_statsPoints + SessionData.i_qualitiesPoints)
+            {
+                p_parent.buttonPlay.Enabled = true;
+            }
+            else
+            {
+                p_parent.buttonPlay.Enabled = false;
+            }
         }
 
         private void CheckCheckboxes()
