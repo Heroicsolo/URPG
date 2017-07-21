@@ -15,6 +15,8 @@ namespace URPG_Client.ClassicFantasy
         private int m_checkedQualities = 0;
         private ClassicFantasy.Mechanics.PlayerStats p_stats;
         private GamesForm p_parent;
+        private bool m_initialized = false;
+        private bool m_addedToParent = false;
 
         public GUI(GamesForm parent)
         {
@@ -22,6 +24,36 @@ namespace URPG_Client.ClassicFantasy
             InitializeComponent();
             ClassicFantasy.Mechanics.PlayerData.Init();
             p_stats = ClassicFantasy.Mechanics.PlayerData.GetStats();
+            m_initialized = true;
+        }
+
+        public bool IsInitialized()
+        {
+            return m_initialized;
+        }
+
+        public void TryAddToParent(Control parent)
+        {
+            if (!m_addedToParent)
+            {
+                parent.Controls.Add(this);
+                m_addedToParent = true;
+            }
+        }
+
+        public void LockUI(bool b_lock)
+        {
+            trackBarAgility.Enabled = !b_lock;
+            trackBarIntelligence.Enabled = !b_lock;
+            trackBarStamina.Enabled = !b_lock;
+            trackBarStrength.Enabled = !b_lock;
+            checkBoxAmbidextry.Enabled = !b_lock;
+            checkBoxArcane.Enabled = !b_lock;
+            checkBoxCrit.Enabled = !b_lock;
+            checkBoxDodginess.Enabled = !b_lock;
+            checkBoxPoisonResist.Enabled = !b_lock;
+            checkBoxRegen.Enabled = !b_lock;
+            checkBoxWeaponMaster.Enabled = !b_lock;
         }
 
         private bool IsPrimaryStatsFilled()

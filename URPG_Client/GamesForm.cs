@@ -12,9 +12,13 @@ namespace URPG_Client
 {
     public partial class GamesForm : Form
     {
+        private bool m_sessionRunning = false;
+        private ClassicFantasy.GUI fantasyGUI;
+
         public GamesForm()
         {
             InitializeComponent();
+            fantasyGUI = new ClassicFantasy.GUI(this);
             NetworkUtils.Init();
 
             RemoveNextTabs();
@@ -46,8 +50,7 @@ namespace URPG_Client
             tabControlMain.SelectTab(1);
             if (gamesListBox.SelectedItem == "Classic fantasy")
             {
-                ClassicFantasy.GUI fantasyGUI = new ClassicFantasy.GUI(this);
-                tabPageCharacter.Controls.Add(fantasyGUI);
+                fantasyGUI.TryAddToParent(tabPageCharacter);
             }
             else if (gamesListBox.SelectedItem == "Fallout")
             {
@@ -78,8 +81,7 @@ namespace URPG_Client
 
             if (gamesListBox.SelectedItem == "Classic fantasy")
             {
-                ClassicFantasy.GUI fantasyGUI = new ClassicFantasy.GUI(this);
-                tabPageCharacter.Controls.Add(fantasyGUI);
+                fantasyGUI.TryAddToParent(tabPageCharacter);
             }
             else if (gamesListBox.SelectedItem == "Fallout")
             {
@@ -90,10 +92,28 @@ namespace URPG_Client
         private void buttonPlay_Click(object sender, EventArgs e)
         {
             tabControlMain.TabPages.Remove(tabPageConnect);
-            tabControlMain.TabPages.Remove(tabPageSession);
-            tabControlMain.TabPages.Remove(tabPageCharacter);
+            //tabControlMain.TabPages.Remove(tabPageSession);
+            //tabControlMain.TabPages.Remove(tabPageCharacter);
             tabControlMain.TabPages.Add(tabPagePlay);
-            tabControlMain.SelectTab(0);
+            tabControlMain.SelectTab(1);
+            m_sessionRunning = true;
         }
+
+        private void tabControlMain_Selected(object sender, TabControlEventArgs e)
+        {
+            if (e.TabPage == tabPageSession)
+            {
+                textBoxSessionName.Enabled = !m_sessionRunning;
+                trackBarMinPlayers.Enabled = !m_sessionRunning;
+                trackBarMaxPlayers.Enabled = !m_sessionRunning;
+            }
+            else if (e.TabPage == tabPageCharacter)
+            {
+                fantasyGUI.LockUI(m_sessionRunning);
+                buttonPlay.Enabled = !m_sessionRunning;
+            }
+        }
+
+
     }
 }
