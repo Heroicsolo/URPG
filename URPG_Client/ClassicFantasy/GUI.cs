@@ -43,17 +43,20 @@ namespace URPG_Client.ClassicFantasy
 
         public void LockUI(bool b_lock)
         {
-            trackBarAgility.Enabled = !b_lock;
-            trackBarIntelligence.Enabled = !b_lock;
-            trackBarStamina.Enabled = !b_lock;
-            trackBarStrength.Enabled = !b_lock;
-            checkBoxAmbidextry.Enabled = !b_lock;
-            checkBoxArcane.Enabled = !b_lock;
-            checkBoxCrit.Enabled = !b_lock;
-            checkBoxDodginess.Enabled = !b_lock;
-            checkBoxPoisonResist.Enabled = !b_lock;
-            checkBoxRegen.Enabled = !b_lock;
-            checkBoxWeaponMaster.Enabled = !b_lock;
+            if (m_initialized)
+            {
+                trackBarAgility.Enabled = !b_lock;
+                trackBarIntelligence.Enabled = !b_lock;
+                trackBarStamina.Enabled = !b_lock;
+                trackBarStrength.Enabled = !b_lock;
+                checkBoxAmbidextry.Enabled = !b_lock;
+                checkBoxArcane.Enabled = !b_lock;
+                checkBoxCrit.Enabled = !b_lock;
+                checkBoxDodginess.Enabled = !b_lock;
+                checkBoxPoisonResist.Enabled = !b_lock;
+                checkBoxRegen.Enabled = !b_lock;
+                checkBoxWeaponMaster.Enabled = !b_lock;
+            }
         }
 
         private bool IsPrimaryStatsFilled()
