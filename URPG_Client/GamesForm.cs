@@ -47,7 +47,7 @@ namespace URPG_Client
         private void joinButton_Click(object sender, EventArgs e)
         {
             tabControlMain.TabPages.Add(tabPageCharacter);
-            tabControlMain.SelectTab(1);
+            tabControlMain.SelectTab(tabPageCharacter);
             if (gamesListBox.SelectedItem == "Classic fantasy")
             {
                 fantasyGUI.TryAddToParent(tabPageCharacter);
@@ -61,19 +61,19 @@ namespace URPG_Client
         private void createButton_Click(object sender, EventArgs e)
         {
             tabControlMain.TabPages.Add(tabPageSession);
-            tabControlMain.SelectTab(1);
+            tabControlMain.SelectTab(tabPageSession);
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            tabControlMain.SelectTab(0);
+            tabControlMain.SelectTab(tabPageConnect);
             RemoveNextTabs();
         }
 
         private void buttonLaunchSession_Click(object sender, EventArgs e)
         {
             tabControlMain.TabPages.Add(tabPageCharacter);
-            tabControlMain.SelectTab(2);
+            tabControlMain.SelectTab(tabPageCharacter);
 
             SessionData.i_minPlayers = trackBarMinPlayers.Value;
             SessionData.i_maxPlayers = trackBarMaxPlayers.Value;
@@ -95,7 +95,7 @@ namespace URPG_Client
             //tabControlMain.TabPages.Remove(tabPageSession);
             //tabControlMain.TabPages.Remove(tabPageCharacter);
             tabControlMain.TabPages.Add(tabPagePlay);
-            tabControlMain.SelectTab(1);
+            tabControlMain.SelectTab(tabPagePlay);
             m_sessionRunning = true;
         }
 
