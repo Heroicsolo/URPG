@@ -50,12 +50,20 @@
             this.trackBarMaxPlayers = new System.Windows.Forms.TrackBar();
             this.labelMinPlayers = new System.Windows.Forms.Label();
             this.labelMaxPlayers = new System.Windows.Forms.Label();
+            this.trackBarStatsPoints = new System.Windows.Forms.TrackBar();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelCharStatsPoints = new System.Windows.Forms.Label();
+            this.labelCharQualitiesNumber = new System.Windows.Forms.Label();
+            this.trackBarCharQualitiesNum = new System.Windows.Forms.TrackBar();
             this.tabControlMain.SuspendLayout();
             this.tabPageConnect.SuspendLayout();
             this.tabPageSession.SuspendLayout();
             this.tabPageCharacter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMinPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxPlayers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarStatsPoints)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarCharQualitiesNum)).BeginInit();
             this.SuspendLayout();
             // 
             // gamesListBox
@@ -169,6 +177,7 @@
             // 
             // tabPageSession
             // 
+            this.tabPageSession.Controls.Add(this.groupBox1);
             this.tabPageSession.Controls.Add(this.labelMaxPlayers);
             this.tabPageSession.Controls.Add(this.labelMinPlayers);
             this.tabPageSession.Controls.Add(this.trackBarMaxPlayers);
@@ -274,7 +283,7 @@
             this.trackBarMaxPlayers.Name = "trackBarMaxPlayers";
             this.trackBarMaxPlayers.Size = new System.Drawing.Size(276, 45);
             this.trackBarMaxPlayers.TabIndex = 5;
-            this.trackBarMaxPlayers.Value = 1;
+            this.trackBarMaxPlayers.Value = 4;
             // 
             // labelMinPlayers
             // 
@@ -294,6 +303,60 @@
             this.labelMaxPlayers.TabIndex = 7;
             this.labelMaxPlayers.Text = "Max players number:";
             // 
+            // trackBarStatsPoints
+            // 
+            this.trackBarStatsPoints.Location = new System.Drawing.Point(132, 31);
+            this.trackBarStatsPoints.Maximum = 30;
+            this.trackBarStatsPoints.Minimum = 5;
+            this.trackBarStatsPoints.Name = "trackBarStatsPoints";
+            this.trackBarStatsPoints.Size = new System.Drawing.Size(276, 45);
+            this.trackBarStatsPoints.TabIndex = 8;
+            this.trackBarStatsPoints.Value = 20;
+            this.trackBarStatsPoints.Scroll += new System.EventHandler(this.trackBarStatsPoints_Scroll);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.labelCharQualitiesNumber);
+            this.groupBox1.Controls.Add(this.labelCharStatsPoints);
+            this.groupBox1.Controls.Add(this.trackBarCharQualitiesNum);
+            this.groupBox1.Controls.Add(this.trackBarStatsPoints);
+            this.groupBox1.Location = new System.Drawing.Point(311, 26);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(433, 232);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Game balance";
+            // 
+            // labelCharStatsPoints
+            // 
+            this.labelCharStatsPoints.AutoSize = true;
+            this.labelCharStatsPoints.Location = new System.Drawing.Point(16, 38);
+            this.labelCharStatsPoints.Name = "labelCharStatsPoints";
+            this.labelCharStatsPoints.Size = new System.Drawing.Size(112, 13);
+            this.labelCharStatsPoints.TabIndex = 9;
+            this.labelCharStatsPoints.Text = "Character stats points:";
+            // 
+            // labelCharQualitiesNumber
+            // 
+            this.labelCharQualitiesNumber.AutoSize = true;
+            this.labelCharQualitiesNumber.Location = new System.Drawing.Point(16, 104);
+            this.labelCharQualitiesNumber.Name = "labelCharQualitiesNumber";
+            this.labelCharQualitiesNumber.Size = new System.Drawing.Size(97, 13);
+            this.labelCharQualitiesNumber.TabIndex = 11;
+            this.labelCharQualitiesNumber.Text = "Character qualities:";
+            // 
+            // trackBarCharQualitiesNum
+            // 
+            this.trackBarCharQualitiesNum.LargeChange = 1;
+            this.trackBarCharQualitiesNum.Location = new System.Drawing.Point(132, 97);
+            this.trackBarCharQualitiesNum.Maximum = 5;
+            this.trackBarCharQualitiesNum.Minimum = 1;
+            this.trackBarCharQualitiesNum.Name = "trackBarCharQualitiesNum";
+            this.trackBarCharQualitiesNum.Size = new System.Drawing.Size(276, 45);
+            this.trackBarCharQualitiesNum.TabIndex = 10;
+            this.trackBarCharQualitiesNum.Value = 2;
+            this.trackBarCharQualitiesNum.Scroll += new System.EventHandler(this.trackBarCharQualitiesNum_Scroll);
+            // 
             // GamesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,6 +373,10 @@
             this.tabPageCharacter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMinPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxPlayers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarStatsPoints)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarCharQualitiesNum)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -338,5 +405,10 @@
         private System.Windows.Forms.TrackBar trackBarMinPlayers;
         private System.Windows.Forms.Label labelSessionName;
         private System.Windows.Forms.TextBox textBoxSessionName;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label labelCharQualitiesNumber;
+        private System.Windows.Forms.Label labelCharStatsPoints;
+        private System.Windows.Forms.TrackBar trackBarCharQualitiesNum;
+        private System.Windows.Forms.TrackBar trackBarStatsPoints;
     }
 }

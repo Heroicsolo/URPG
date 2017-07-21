@@ -106,12 +106,24 @@ namespace URPG_Client
                 textBoxSessionName.Enabled = !m_sessionRunning;
                 trackBarMinPlayers.Enabled = !m_sessionRunning;
                 trackBarMaxPlayers.Enabled = !m_sessionRunning;
+                trackBarCharQualitiesNum.Enabled = !m_sessionRunning;
+                trackBarStatsPoints.Enabled = !m_sessionRunning;
             }
             else if (e.TabPage == tabPageCharacter)
             {
                 fantasyGUI.LockUI(m_sessionRunning);
                 buttonPlay.Enabled = !m_sessionRunning;
             }
+        }
+
+        private void trackBarStatsPoints_Scroll(object sender, EventArgs e)
+        {
+            SessionData.i_statsPoints = trackBarStatsPoints.Value;
+        }
+
+        private void trackBarCharQualitiesNum_Scroll(object sender, EventArgs e)
+        {
+            SessionData.i_qualitiesPoints = trackBarCharQualitiesNum.Value;
         }
 
 
