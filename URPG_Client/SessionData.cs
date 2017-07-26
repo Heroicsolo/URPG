@@ -16,6 +16,7 @@ namespace URPG_Client
         public static int i_qualitiesPoints;
         public static int i_minPlayers;
         public static int i_maxPlayers;
+        public static int i_currentPlayers;
         public static string s_name;
         public static string s_gameType;
 
@@ -24,8 +25,9 @@ namespace URPG_Client
             i_statsPoints = STATS_POINTS_DEFAULT;
             i_qualitiesPoints = QUALITIES_MAX_DEFAULT;
             s_name = "MySession";
-            i_minPlayers = 1;
+            i_minPlayers = 2;
             i_maxPlayers = 4;
+            i_currentPlayers = 2;
             s_gameType = "ClassicFantasy";
         }
     }

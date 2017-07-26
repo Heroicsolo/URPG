@@ -70,6 +70,12 @@
     <Compile Include="NetworkUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandEventForPlayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RandEventForPlayer.Designer.cs">
+      <DependentUpon>RandEventForPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="SessionData.cs" />
     <EmbeddedResource Include="ClassicFantasy\GUI.resx">
       <DependentUpon>GUI.cs</DependentUpon>
@@ -86,6 +92,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RandEventForPlayer.resx">
+      <DependentUpon>RandEventForPlayer.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

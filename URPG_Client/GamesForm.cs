@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,21 +15,35 @@ namespace URPG_Client
     {
         private bool m_sessionRunning = false;
         private ClassicFantasy.GUI fantasyGUI;
+        private RandEventForPlayer[] rngControls;
+        private RNGCryptoServiceProvider RNG;
 
         public GamesForm()
         {
             InitializeComponent();
             fantasyGUI = new ClassicFantasy.GUI(this);
             NetworkUtils.Init();
-
+            RNG = new RNGCryptoServiceProvider();
             RemoveNextTabs();
             SessionData.Init();
+            rngControls = new RandEventForPlayer[SessionData.i_currentPlayers];
+        }
+
+        private void InitRandEventsTab()
+        {
+            rngControls = new RandEventForPlayer[SessionData.i_currentPlayers];
+            for (int i = 0; i < SessionData.i_currentPlayers; i++)
+            {
+                rngControls[i] = new RandEventForPlayer();
+                rngControls[i].SetBounds(40, 100 + i * 60, 300, 60);
+            }
+            tabPageRandGen.Controls.AddRange(rngControls);
         }
 
         private void RemoveNextTabs()
         {
             int i_currentTab = tabControlMain.SelectedIndex;
-            for (int i = tabControlMain.TabPages.Count - 1; i > i_currentTab; i--)
+            for (int i = tabControlMain.TabPages.Count - 2; i > i_currentTab; i--)
                 tabControlMain.TabPages.RemoveAt(i);
         }
 
@@ -114,6 +129,12 @@ namespace URPG_Client
                 fantasyGUI.LockUI(m_sessionRunning);
                 buttonPlay.Enabled = !m_sessionRunning;
             }
+            else if (e.TabPage == tabPageRandGen)
+            {
+                if (rngControls.Length > 0)
+                    tabPageRandGen.Controls.Cast<Control>().ToList().RemoveAll(i => rngControls.Contains(i));
+                InitRandEventsTab();
+            }
         }
 
         private void trackBarStatsPoints_Scroll(object sender, EventArgs e)
@@ -124,6 +145,15 @@ namespace URPG_Client
         private void trackBarCharQualitiesNum_Scroll(object sender, EventArgs e)
         {
             SessionData.i_qualitiesPoints = trackBarCharQualitiesNum.Value;
+        }
+
+        private void buttonGenerateRNG_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < SessionData.i_currentPlayers; i++)
+            {
+                rngControls[i].RefreshState();
+                rngControls[i].Invalidate();
+            }
         }
 
 

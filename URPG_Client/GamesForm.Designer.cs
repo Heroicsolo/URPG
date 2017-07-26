@@ -55,6 +55,12 @@
             this.labelCharStatsPoints = new System.Windows.Forms.Label();
             this.labelCharQualitiesNumber = new System.Windows.Forms.Label();
             this.trackBarCharQualitiesNum = new System.Windows.Forms.TrackBar();
+            this.tabPageRandGen = new System.Windows.Forms.TabPage();
+            this.textBoxRandEventName = new System.Windows.Forms.TextBox();
+            this.labelRandEventName = new System.Windows.Forms.Label();
+            this.labelChance = new System.Windows.Forms.Label();
+            this.labelResult = new System.Windows.Forms.Label();
+            this.buttonGenerateRNG = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPageConnect.SuspendLayout();
             this.tabPageSession.SuspendLayout();
@@ -64,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarStatsPoints)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarCharQualitiesNum)).BeginInit();
+            this.tabPageRandGen.SuspendLayout();
             this.SuspendLayout();
             // 
             // gamesListBox
@@ -149,6 +156,7 @@
             this.tabControlMain.Controls.Add(this.tabPageSession);
             this.tabControlMain.Controls.Add(this.tabPageCharacter);
             this.tabControlMain.Controls.Add(this.tabPagePlay);
+            this.tabControlMain.Controls.Add(this.tabPageRandGen);
             this.tabControlMain.Location = new System.Drawing.Point(0, 0);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
@@ -357,6 +365,65 @@
             this.trackBarCharQualitiesNum.Value = 2;
             this.trackBarCharQualitiesNum.Scroll += new System.EventHandler(this.trackBarCharQualitiesNum_Scroll);
             // 
+            // tabPageRandGen
+            // 
+            this.tabPageRandGen.Controls.Add(this.buttonGenerateRNG);
+            this.tabPageRandGen.Controls.Add(this.labelResult);
+            this.tabPageRandGen.Controls.Add(this.labelChance);
+            this.tabPageRandGen.Controls.Add(this.labelRandEventName);
+            this.tabPageRandGen.Controls.Add(this.textBoxRandEventName);
+            this.tabPageRandGen.Location = new System.Drawing.Point(4, 22);
+            this.tabPageRandGen.Name = "tabPageRandGen";
+            this.tabPageRandGen.Size = new System.Drawing.Size(792, 574);
+            this.tabPageRandGen.TabIndex = 4;
+            this.tabPageRandGen.Text = "Random generator";
+            this.tabPageRandGen.UseVisualStyleBackColor = true;
+            // 
+            // textBoxRandEventName
+            // 
+            this.textBoxRandEventName.Location = new System.Drawing.Point(50, 33);
+            this.textBoxRandEventName.MaxLength = 64;
+            this.textBoxRandEventName.Name = "textBoxRandEventName";
+            this.textBoxRandEventName.Size = new System.Drawing.Size(683, 20);
+            this.textBoxRandEventName.TabIndex = 0;
+            // 
+            // labelRandEventName
+            // 
+            this.labelRandEventName.AutoSize = true;
+            this.labelRandEventName.Location = new System.Drawing.Point(47, 17);
+            this.labelRandEventName.Name = "labelRandEventName";
+            this.labelRandEventName.Size = new System.Drawing.Size(67, 13);
+            this.labelRandEventName.TabIndex = 1;
+            this.labelRandEventName.Text = "Event name:";
+            // 
+            // labelChance
+            // 
+            this.labelChance.AutoSize = true;
+            this.labelChance.Location = new System.Drawing.Point(106, 70);
+            this.labelChance.Name = "labelChance";
+            this.labelChance.Size = new System.Drawing.Size(43, 13);
+            this.labelChance.TabIndex = 4;
+            this.labelChance.Text = "chance";
+            // 
+            // labelResult
+            // 
+            this.labelResult.AutoSize = true;
+            this.labelResult.Location = new System.Drawing.Point(172, 70);
+            this.labelResult.Name = "labelResult";
+            this.labelResult.Size = new System.Drawing.Size(32, 13);
+            this.labelResult.TabIndex = 5;
+            this.labelResult.Text = "result";
+            // 
+            // buttonGenerateRNG
+            // 
+            this.buttonGenerateRNG.Location = new System.Drawing.Point(605, 96);
+            this.buttonGenerateRNG.Name = "buttonGenerateRNG";
+            this.buttonGenerateRNG.Size = new System.Drawing.Size(128, 23);
+            this.buttonGenerateRNG.TabIndex = 28;
+            this.buttonGenerateRNG.Text = "Generate";
+            this.buttonGenerateRNG.UseVisualStyleBackColor = true;
+            this.buttonGenerateRNG.Click += new System.EventHandler(this.buttonGenerateRNG_Click);
+            // 
             // GamesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -377,6 +444,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarCharQualitiesNum)).EndInit();
+            this.tabPageRandGen.ResumeLayout(false);
+            this.tabPageRandGen.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -410,5 +479,11 @@
         private System.Windows.Forms.Label labelCharStatsPoints;
         private System.Windows.Forms.TrackBar trackBarCharQualitiesNum;
         private System.Windows.Forms.TrackBar trackBarStatsPoints;
+        private System.Windows.Forms.TabPage tabPageRandGen;
+        private System.Windows.Forms.Label labelResult;
+        private System.Windows.Forms.Label labelChance;
+        private System.Windows.Forms.Label labelRandEventName;
+        private System.Windows.Forms.TextBox textBoxRandEventName;
+        private System.Windows.Forms.Button buttonGenerateRNG;
     }
 }
