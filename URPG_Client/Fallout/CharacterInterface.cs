@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace URPG_Client.Fallout
 {
-    public partial class CharacterForm : Form
+    public partial class CharacterInterface : UserControl
     {
-        public CharacterForm()
+        public CharacterInterface()
         {
             InitializeComponent();
         }

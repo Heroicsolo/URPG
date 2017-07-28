@@ -54,11 +54,11 @@
     <Compile Include="ClassicFantasy\GUI.Designer.cs">
       <DependentUpon>GUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fallout\CharacterForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Fallout\CharacterInterface.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Fallout\CharacterForm.Designer.cs">
-      <DependentUpon>CharacterForm.cs</DependentUpon>
+    <Compile Include="Fallout\CharacterInterface.Designer.cs">
+      <DependentUpon>CharacterInterface.cs</DependentUpon>
     </Compile>
     <Compile Include="Fallout\Mechanics.cs" />
     <Compile Include="GamesForm.cs">
@@ -79,6 +79,9 @@
     <Compile Include="SessionData.cs" />
     <EmbeddedResource Include="ClassicFantasy\GUI.resx">
       <DependentUpon>GUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout\CharacterInterface.resx">
+      <DependentUpon>CharacterInterface.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GamesForm.resx">
       <DependentUpon>GamesForm.cs</DependentUpon>
