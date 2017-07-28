@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharacterInterface));
             this.SuspendLayout();
             // 
             // CharacterInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.Name = "CharacterInterface";
             this.Size = new System.Drawing.Size(640, 480);
             this.ResumeLayout(false);
@@ -41,5 +43,6 @@
         }
 
         #endregion
+
     }
 }

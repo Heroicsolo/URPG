@@ -15,13 +15,20 @@ namespace URPG_Client
     {
         private bool m_sessionRunning = false;
         private ClassicFantasy.GUI fantasyGUI;
+        private Fallout.CharacterInterface falloutGUI;
         private RandEventForPlayer[] rngControls;
         private RNGCryptoServiceProvider RNG;
+        private string mCurrentCharGame;
 
         public GamesForm()
         {
             InitializeComponent();
+            gamesListBox.SelectedIndex = 0;
+            sessionsListBox.SelectedIndex = 0;
+            mCurrentCharGame = (string)gamesListBox.SelectedItem;
+
             fantasyGUI = new ClassicFantasy.GUI(this);
+            falloutGUI = new Fallout.CharacterInterface();
             NetworkUtils.Init();
             RNG = new RNGCryptoServiceProvider();
             RemoveNextTabs();
@@ -61,16 +68,27 @@ namespace URPG_Client
 
         private void joinButton_Click(object sender, EventArgs e)
         {
+            string currentCharGame = (string)gamesListBox.SelectedItem;
+
+            if (mCurrentCharGame != currentCharGame)
+            {
+                tabPageCharacter.Controls.Clear();
+                tabControlMain.TabPages.Remove(tabPageCharacter);
+            }
+
             tabControlMain.TabPages.Add(tabPageCharacter);
             tabControlMain.SelectTab(tabPageCharacter);
-            if (gamesListBox.SelectedItem == "Classic fantasy")
+
+            if (currentCharGame == "Classic fantasy")
             {
                 fantasyGUI.TryAddToParent(tabPageCharacter);
             }
-            else if (gamesListBox.SelectedItem == "Fallout")
+            else if (currentCharGame == "Fallout")
             {
-                //some Fallout stuff
+                tabPageCharacter.Controls.Add(falloutGUI);
             }
+
+            mCurrentCharGame = (string)gamesListBox.SelectedItem;
         }
 
         private void createButton_Click(object sender, EventArgs e)
@@ -94,11 +112,11 @@ namespace URPG_Client
             SessionData.i_maxPlayers = trackBarMaxPlayers.Value;
             SessionData.s_name = textBoxSessionName.Text;
 
-            if (gamesListBox.SelectedItem == "Classic fantasy")
+            if ((string)gamesListBox.SelectedItem == "Classic fantasy")
             {
                 fantasyGUI.TryAddToParent(tabPageCharacter);
             }
-            else if (gamesListBox.SelectedItem == "Fallout")
+            else if ((string)gamesListBox.SelectedItem == "Fallout")
             {
                 //some Fallout stuff
             }
